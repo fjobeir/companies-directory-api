@@ -12,7 +12,7 @@ const store = async (req, res, next) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         errors.array().forEach((error) => {
-            result.messages.push(`${error.param} - ${error.msg}`)
+            result.messages.push(`${error.msg}`)
         })
         result.success = false
         return res.send(result)

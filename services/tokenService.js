@@ -4,7 +4,7 @@ const getToken = (data) => {
     return jwt.sign({
         ...data
     }, process.env.tokenKey, {
-        expiresIn: 60
+        expiresIn: 60 * 60 * 24 * 7
     })
 }
 const verifyToken = (token) => {
