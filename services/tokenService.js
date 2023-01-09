@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken')
 
 const getToken = (data) => {
-    return jwt.sign({
-        ...data
-    }, process.env.tokenKey, {
-        expiresIn: 60 * 60 * 24 * 7
-    })
+    return jwt.sign(
+        { ...data },
+        process.env.tokenKey,
+        { expiresIn: 60 * 60 * 24 * 7 }
+    )
 }
 const verifyToken = (token) => {
     let result = null
@@ -15,7 +15,7 @@ const verifyToken = (token) => {
             result = payload
         }
     } catch(e) {
-
+        
     }
     return result
 }

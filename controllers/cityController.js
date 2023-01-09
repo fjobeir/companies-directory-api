@@ -9,11 +9,6 @@ const store = async (req, res, next) => {
         messages: []
     }
     const { name = '', provinceId = null } = req.body
-    // Validation
-    if (!validateName(name)) {
-        result.success = false
-        result.messages.push('Please enter a valid city name')
-    }
     const province = await getInstanceById(provinceId, 'Province')
     if (!province.success) {
         res.status(province.status)

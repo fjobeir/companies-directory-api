@@ -1,7 +1,6 @@
 const models = require("../models");
 const { getInstanceById } = require("../services/modelService");
 const { validateName } = require("../services/validationService");
-const { validationResult } = require('express-validator');
 const { categoryTransformer, categoriesTransformer } = require("../transformers/category");
 const store = async (req, res, next) => {
     const result = {
@@ -9,14 +8,6 @@ const store = async (req, res, next) => {
         data: null,
         messages: [],
     };
-    const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-        errors.array().forEach((error) => {
-            result.messages.push(`${error.msg}`)
-        })
-        result.success = false
-        return res.send(result)
-    }
     const category = await models.Category.create({
         name: req.body.name,
         description: req.body.description,

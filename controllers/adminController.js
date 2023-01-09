@@ -16,25 +16,6 @@ const store = async (req, res, next) => {
     messages: [],
   };
   const { name = "", email = "", password = "", phone = null } = req.body;
-  // Validation
-  if (!validateName(name)) {
-    result.success = false;
-    result.messages.push("Please enter a valid name");
-  }
-  if (!validateEmail(email)) {
-    result.success = false;
-    result.messages.push("Please enter a valid email");
-  }
-  if (!validatePassword(password)) {
-    result.success = false;
-    result.messages.push("Please enter a valid password");
-  }
-  if (!result.success) {
-    // validation failed
-    res.send(result);
-    return;
-  }
-  // validation passed
   // Store in database
   const [admin, created] = await models.Admin.findOrCreate({
     where: {

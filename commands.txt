@@ -1,2 +1,0 @@
-Create Admin model and migration
-sequelize model:generate --name Admin --attributes id:integer,name:string,email:string,password:string

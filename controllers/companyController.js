@@ -7,6 +7,7 @@ const {
 } = require("../services/validationService");
 const { companyTransformer, companiesTransformer } = require("../transformers/company");
 const { getInstanceById } = require("../services/modelService");
+const { getToken } = require("../services/tokenService");
 
 const store = async (req, res) => {
   const result = {
@@ -86,7 +87,10 @@ const login = async (req, res) => {
     if (verifyPassword(password, companyUser.password)) {
       result.data = companyTransformer(companyUser);
       result.messages.push("Logged in successfully");
-      // send token later
+      result.token = getToken({
+        id: companyUser.id,
+        type: 'company'
+      })
     } else {
       (result.success = false), result.messages.push("invalid password ! ");
     }
