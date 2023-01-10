@@ -161,7 +161,7 @@ const imageValdation = [
 ];
 
 const logoValdation = [
-  check("img")
+  check("logo")
     .custom((value, { req }) => {
       if (req?.files?.logo[0]) {
         return true;
@@ -174,7 +174,7 @@ const logoValdation = [
   errorRepons,
 ];
 const bannerValdation = [
-  check("img")
+  check("banner")
     .custom((value, { req }) => {
       if (req?.files?.banner[0]) {
         return true;

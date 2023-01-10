@@ -9,7 +9,7 @@ router.post(
   "/register",
   isAuthenticated,
   (req, res, next) =>
-    isAuthorized(req, res, next, { admin: { matchId: false } }),
+    isAuthorized(req, res, next, { superadmin: { matchId: false } }),
   nameValidation,
   emailValidation,
   passwordValidation,
@@ -31,7 +31,10 @@ router.put(
   "/:id",
   isAuthenticated,
   (req, res, next) =>
-    isAuthorized(req, res, next, { admin: { matchId: true } }),
+    isAuthorized(req, res, next, {
+      admin: { matchId: true },
+      superadmin: {matchId: false}
+    }),
   nameValidation,
   emailValidation,
   passwordValidation,
@@ -43,7 +46,7 @@ router.delete(
   "/:id",
   isAuthenticated,
   (req, res, next) =>
-    isAuthorized(req, res, next, { admin: { matchId: true } }),
+    isAuthorized(req, res, next, { superadmin: { matchId: false } }),
   destroy
 );
 

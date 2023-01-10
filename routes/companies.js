@@ -49,7 +49,7 @@ router.post("/login", emailValidation, passwordValidation, login);
 
 router.get("/", isAuthenticated, index);
 
-router.post(
+router.put(
   "/:id",
   isAuthenticated,
   (req, res, next) =>
