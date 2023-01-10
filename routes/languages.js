@@ -1,15 +1,19 @@
 var express = require("express");
+var router = express.Router();
+const isAuthorized = require("../middlewares/isAuthorized");
+const isAuthenticated = require("../middlewares/isAuthenticated");
+const {
+  nameValidation,
+  languageDirectionValidation,
+  codeValidation,
+} = require("../services/validationService");
 const {
   store,
   index,
   show,
   update,
-  destroy,
-} = require("../controllers/cityController");
-var router = express.Router();
-const isAuthorized = require("../middlewares/isAuthorized");
-const isAuthenticated = require("../middlewares/isAuthenticated");
-const { nameValidation } = require("../services/validationService");
+  destroy
+} = require("../controllers/languagesController");
 
 router.post(
   "/",
@@ -17,8 +21,11 @@ router.post(
   (req, res, next) =>
     isAuthorized(req, res, next, { admin: { matchId: false } }),
   nameValidation,
+  languageDirectionValidation,
+  codeValidation,
   store
 );
+
 router.get("/", isAuthenticated, index);
 
 router.get("/:id", isAuthenticated, show);
@@ -29,6 +36,8 @@ router.put(
   (req, res, next) =>
     isAuthorized(req, res, next, { admin: { matchId: false } }),
   nameValidation,
+  languageDirectionValidation,
+  codeValidation,
   update
 );
 
@@ -39,5 +48,4 @@ router.delete(
     isAuthorized(req, res, next, { admin: { matchId: false } }),
   destroy
 );
-
 module.exports = router;

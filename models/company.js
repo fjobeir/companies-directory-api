@@ -1,7 +1,5 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Company extends Model {
     /**
@@ -20,36 +18,39 @@ module.exports = (sequelize, DataTypes) => {
       Company.belongsTo(models.City, {
         foreignKey: "cityId",
       });
-      Company.hasMany(models.Ad, {
+      Company.hasMany(models.Article, { 
         foreignKey: 'companyId'
       })
-      Company.hasMany(models.Article, {
+      Company.hasMany(models.Review, { 
         foreignKey: 'companyId'
       })
-      Company.hasMany(models.Review, {
+      Company.hasMany(models.Ad, { 
         foreignKey: 'companyId'
       })
     }
   }
-  Company.init({
-    name: DataTypes.STRING,
-    categoryId: DataTypes.INTEGER,
-    provinceId: DataTypes.INTEGER,
-    cityId: DataTypes.INTEGER,
-    address: DataTypes.STRING,
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    logo: DataTypes.STRING,
-    banner: DataTypes.STRING,
-    views: DataTypes.INTEGER,
-    latitude: DataTypes.DECIMAL,
-    longitude: DataTypes.DECIMAL,
-    establishmentDate: DataTypes.DATE,
-    description: DataTypes.TEXT
-  }, {
-    sequelize,
-    modelName: 'Company',
-    paranoid: true
-  });
+  Company.init(
+    {
+      name: DataTypes.STRING,
+      categoryId: DataTypes.INTEGER,
+      provinceId: DataTypes.INTEGER,
+      cityId: DataTypes.INTEGER,
+      address: DataTypes.STRING,
+      email: DataTypes.STRING,
+      password: DataTypes.STRING,
+      logo: DataTypes.STRING,
+      banner: DataTypes.STRING,
+      views: DataTypes.INTEGER,
+      latitude: DataTypes.DECIMAL,
+      longitude: DataTypes.DECIMAL,
+      establishmentDate: DataTypes.DATE,
+      description: DataTypes.TEXT,
+    },
+    {
+      sequelize,
+      modelName: "Company",
+      paranoid: true,
+    }
+  );
   return Company;
 };

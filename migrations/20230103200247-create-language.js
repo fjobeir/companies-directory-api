@@ -19,9 +19,8 @@ module.exports = {
         unique: true,
       },
       direction: {
-        type: Sequelize.BOOLEAN,
+        type: Sequelize.STRING,
         allowNull: false,
-        defaultValue: 1
       },
       createdAt: {
         allowNull: false,

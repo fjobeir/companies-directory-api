@@ -16,7 +16,7 @@ module.exports = (sequelize, DataTypes) => {
   Language.init({
     name: DataTypes.STRING,
     code: DataTypes.STRING,
-    direction: DataTypes.BOOLEAN
+    direction: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Language',
