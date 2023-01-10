@@ -3,7 +3,7 @@ const userTransformer = (user) => {
     delete user.dataValues.password;
   }
   if (user?.avatar) {
-    user.avatar = process.env.serverUrl + user.avatar;
+    user.avatar = process.env.serverUrl + '/uploads/' + user.avatar;
   }
 
   return user;

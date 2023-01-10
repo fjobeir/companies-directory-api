@@ -1,34 +1,64 @@
-const Models = require("../models");
+const { Op } = require("sequelize");
+const models = require("../models");
+const { adsTransformer } = require("../transformers/adTransformer");
 
 const store = async (req, res, next) => {
-    const result = {
+    const httpResponse = {
         success: true,
         data: null,
         messages: [],
     };
     const {
-        userId = "",
-        companyId = "",
-        comment = "",
-        rate = "",
+        startDate,
+        endDate,
+        target,
     } = req.body;
-    const review = await Models.Review.create({
-        userId,
-        companyId,
-        comment,
-        rate,
-    });
-    if (review) {
-        result.data = review;
-        result.messages.push("Your review has been created successfuly");
+
+    const ad = await models.Ad.create({
+        companyId: req.user.id,
+        startDate,
+        endDate,
+        photo: req.file.filename,
+        target
+    })
+    if (ad) {
+        httpResponse.data = ad,
+        httpResponse.messages.push('Ad added successfully')
     } else {
-        (result.success = false), result.messages.push("Please try a gain");
+        httpResponse.success = false
+        httpResponse.messages.push('Please try again later')
     }
-    return res.send(result);
+    return res.send(httpResponse);
 };
 
 
 const index = async (req, res, next) => {
+    const httpResponse = {
+        success: true,
+        data: null,
+        messages: [],
+    };
+    let where = {}
+    if (req.user.type != 'admin') {
+        const today = new Date().toJSON().substring(0, 10)
+        where = {
+            [Op.and]: [
+                {
+                    startDate: {
+                        [Op.lte]: today
+                    },
+                    endDate: {
+                        [Op.gte]: today
+                    }
+                }
+            ]
+        }
+    }
+    const ads = await models.Ad.findAll({
+        where
+    })
+    httpResponse.data = adsTransformer(ads)
+    return res.send(httpResponse)
 
 };
 const update = async (req, res, next) => {

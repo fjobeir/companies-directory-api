@@ -5,7 +5,7 @@ const {
 } = require("express-validator");
 const multer = require("multer");
 
-const errorRepons = (req, res, next) => {
+const errorResponse = (req, res, next) => {
   const httpResponse = {
     success: false,
     data: null,
@@ -41,7 +41,7 @@ const nameValidation = [
     .notEmpty()
     .withMessage("Name can not be empty!")
     .bail(),
-  errorRepons,
+  errorResponse,
 ];
 
 const titleValidation = [
@@ -53,7 +53,7 @@ const titleValidation = [
     .notEmpty()
     .withMessage("title can not be empty!")
     .bail(),
-  errorRepons,
+  errorResponse,
 ];
 const contentValidation = [
   body("content")
@@ -64,7 +64,7 @@ const contentValidation = [
     .notEmpty()
     .withMessage("Content can not be empty!")
     .bail(),
-  errorRepons,
+  errorResponse,
 ];
 
 const codeValidation = [
@@ -76,7 +76,7 @@ const codeValidation = [
     .notEmpty()
     .withMessage("code can not be empty!")
     .bail(),
-  errorRepons,
+  errorResponse,
 ];
 
 const languageDirectionValidation = [
@@ -88,7 +88,7 @@ const languageDirectionValidation = [
     .notEmpty()
     .withMessage("direction can not be empty!")
     .bail(),
-  errorRepons,
+  errorResponse,
 ];
 
 const emailValidation = [
@@ -99,7 +99,7 @@ const emailValidation = [
     .notEmpty()
     .withMessage("Email can not be empty!")
     .bail(),
-  errorRepons,
+  errorResponse,
 ];
 const passwordValidation = [
   body("password")
@@ -111,7 +111,7 @@ const passwordValidation = [
     )
     .notEmpty()
     .withMessage("Password can not be empty!"),
-  errorRepons,
+  errorResponse,
 ];
 
 const phoneValdation = [
@@ -119,7 +119,7 @@ const phoneValdation = [
     .isLength({ min: 6 })
     .optional({ nullable: true })
     .withMessage("Minimum 6 characters required for the phone!"),
-  errorRepons,
+  errorResponse,
 ];
 
 const bioValdation = [
@@ -127,7 +127,7 @@ const bioValdation = [
     .isLength({ min: 250 })
     .optional({ nullable: true })
     .withMessage("Maxmium 250 characters required for the bio!"),
-  errorRepons,
+  errorResponse,
 ];
 
 const descriptionValdation = [
@@ -135,7 +135,7 @@ const descriptionValdation = [
     .isLength({ max: 250 })
     .optional({ nullable: true })
     .withMessage("Maxmium 250 characters required for the description!"),
-  errorRepons,
+  errorResponse,
 ];
 
 const addressValdation = [
@@ -143,7 +143,7 @@ const addressValdation = [
     .isLength({ max: 250 })
     .optional({ nullable: true })
     .withMessage("Maxmium 250 characters required for the address!"),
-  errorRepons,
+  errorResponse,
 ];
 
 const imageValdation = [
@@ -157,7 +157,7 @@ const imageValdation = [
     .withMessage(function () {
       return `The icon is invalid: ${uploadErrors?.toLocaleLowerCase() || "You sholud upload image up to 1MB"}`;
     }),
-  errorRepons,
+  errorResponse,
 ];
 
 const logoValdation = [
@@ -171,7 +171,7 @@ const logoValdation = [
     .withMessage(function () {
       return `The logo is invalid: ${uploadErrors?.toLocaleLowerCase() || "You sholud upload image up to 1MB"}`;
     }),
-  errorRepons,
+  errorResponse,
 ];
 const bannerValdation = [
   check("banner")
@@ -184,10 +184,18 @@ const bannerValdation = [
     .withMessage(function () {
       return `The banner image is invalid: ${uploadErrors?.toLocaleLowerCase() || "You sholud upload image up to 1MB"}`;
     }),
-  errorRepons,
+  errorResponse,
 ];
 const dateValidation = (date) => {
-  return (/^(((\d{4})(-)(0[13578]|10|12)(-)(0[1-9]|[12][0-9]|3[01]))|((\d{4})(-)(0[469]|11)(-)([0][1-9]|[12][0-9]|30))|((\d{4})(-)(02)(-)(0[1-9]|1[0-9]|2[0-8]))|(([02468][048]00)(-)(02)(-)(29))|(([13579][26]00)(-)(02)(-)(29))|(([0-9][0-9][0][48])(-)(02)(-)(29))|(([0-9][0-9][2468][048])(-)(02)(-)(29))|(([0-9][0-9][13579][26])(-)(02)(-)(29)))(\s([0-1][0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9]))$/.test(date))
+  return /^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$/.test(date)
+  return /^(((\d{4})(-)(0[13578]|10|12)(-)(0[1-9]|[12][0-9]|3[01]))|((\d{4})(-)(0[469]|11)(-)([0][1-9]|[12][0-9]|30))|((\d{4})(-)(02)(-)(0[1-9]|1[0-9]|2[0-8]))|(([02468][048]00)(-)(02)(-)(29))|(([13579][26]00)(-)(02)(-)(29))|(([0-9][0-9][0][48])(-)(02)(-)(29))|(([0-9][0-9][2468][048])(-)(02)(-)(29))|(([0-9][0-9][13579][26])(-)(02)(-)(29)))(\s([0-1][0-9]|2[0-4]):([0-5][0-9]):([0-5][0-9]))$/.test(date)
+}
+const dateAfter = (date1, date2) => {
+  return date2 >= date1
+}
+const urlValidation = (url) => {
+  return /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/.test(url)
+
 }
 module.exports = {
   nameValidation,
@@ -206,4 +214,7 @@ module.exports = {
   contentValidation,
   checkUpload,
   dateValidation,
+  dateAfter,
+  urlValidation,
+  errorResponse
 };

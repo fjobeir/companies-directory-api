@@ -8,6 +8,7 @@ const {
   update,
   destroy,
   show,
+  me,
 } = require("../controllers/companyController");
 const {
   nameValidation,
@@ -47,7 +48,7 @@ router.post(
 
 router.post("/login", emailValidation, passwordValidation, login);
 
-router.get("/", isAuthenticated, index);
+router.get("/", index);
 
 router.put(
   "/:id",
@@ -80,14 +81,13 @@ router.delete(
   destroy
 );
 
+
+router.get('/me', isAuthenticated, function(req, res, next) {
+  isAuthorized(req, res, next, {company: {}})
+}, me)
+
 router.get(
   "/:id",
-  isAuthenticated,
-  (req, res, next) =>
-    isAuthorized(req, res, next, {
-      company: { matchId: true },
-      admin: { matchId: false },
-    }),
   show
 );
 

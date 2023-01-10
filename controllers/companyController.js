@@ -169,7 +169,7 @@ const show = async (req, res, next) => {
   };
   const item = await getInstanceById(req.params.id, "Company");
   if (item.success) {
-    httpResponse.data = companyTransformer(item.instance.dataValues);
+    httpResponse.data = companyTransformer(item.instance);
   }
   httpResponse.success = false;
   httpResponse.messages = [...item.messages];
@@ -177,6 +177,24 @@ const show = async (req, res, next) => {
   return res.send(httpResponse);
 };
 
+
+const me = async (req, res, next) => {
+  const httpResponse = {
+    success: true,
+    data: null,
+    messages: [],
+  };
+  const company = await models.Company.findByPk(req.user.id, {
+    include: [
+      models.Article,
+      models.Ad
+    ]
+  })
+  if (company) {
+    httpResponse.data = companyTransformer(company);
+  }
+  return res.send(httpResponse);
+};
 module.exports = {
   store,
   login,
@@ -184,4 +202,5 @@ module.exports = {
   update,
   destroy,
   show,
+  me
 };

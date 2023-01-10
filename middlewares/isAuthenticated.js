@@ -1,4 +1,6 @@
 const { verifyToken } = require("../services/tokenService")
+// TODO
+// Check if the user is still valid (deletedAt, deactivatedAt)
 const isAuthenticated = (req, res, next) => {
     const auth = req?.headers?.authorization
     if (!auth) {
