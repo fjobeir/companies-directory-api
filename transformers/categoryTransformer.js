@@ -1,6 +1,6 @@
 const categoryTransformer = (category) => {
   if (category?.icon) {
-    category.icon = process.env.server_url + category.icon;
+    category.icon = process.env.serverUrl + category.icon;
   }
   return category;
 };

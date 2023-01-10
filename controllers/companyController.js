@@ -17,16 +17,22 @@ const store = async (req, res, next) => {
   const city = await getInstanceById(req.body.cityId, "City");
   const category = await getInstanceById(req.body.categoryId, "Category");
   if (!province.success) {
+    httpResponse.success = false
     res.status(422);
     httpResponse.messages.push("Please enter a valid province id");
   }
   if (!city.success) {
+    httpResponse.success = false
     res.status(422);
     httpResponse.messages.push("Please enter a valid city id");
   }
   if (!category.success) {
+    httpResponse.success = false
     res.status(422);
     httpResponse.messages.push("Please enter a valid category id");
+  }
+  if (!httpResponse.success) {
+    return res.send(httpResponse)
   }
   const [company, created] = await models.Company.findOrCreate({
     where: {
@@ -44,9 +50,10 @@ const store = async (req, res, next) => {
     },
   });
   if (created) {
+    httpResponse.data = companyTransformer(company)
     httpResponse.messages.push("Company created successfully");
   } else {
-    res.status(409);
+    res.status(200);
     httpResponse.success = false;
     httpResponse.messages.push("You are already registered");
   }

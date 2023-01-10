@@ -3,10 +3,10 @@ const companyTransformer = (company) => {
     delete company.dataValues.password;
   }
   if (company?.logo) {
-    company.logo = process.env.server_url + company.logo;
+    company.logo = process.env.serverUrl + company.logo;
   }
   if (company?.banner) {
-    company.banner = process.env.server_url + company.banner;
+    company.banner = process.env.serverUrl + company.banner;
   }
   return company;
 };
