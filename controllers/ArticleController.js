@@ -101,18 +101,24 @@ const update = async (req, res, next) => {
     return res.send(httpResponse);
   }
   const item = await getInstanceById(req.params.id, "Article");
-  if (item.success) {
-    httpResponse.success = true;
-    await item.instance.update({
-      companyId,
-      categoryId,
-      title,
-      content,
-    });
-    httpResponse.data = item.instance;
-    httpResponse.messages.push("Article updated successfully");
+  if (req.user.id == item.instance.companyId) {
+    if (item.success) {
+      httpResponse.success = true;
+      await item.instance.update({
+        companyId,
+        categoryId,
+        title,
+        content,
+      });
+      httpResponse.data = item.instance;
+      httpResponse.messages.push("Article updated successfully");
+    } else {
+      httpResponse.messages = [...item.messages];
+    }
   } else {
-    httpResponse.messages = [...item.messages];
+    httpResponse.success = false
+    httpResponse.messages.push('You are not allowed to do so')
+    res.status(403);
   }
   res.status(item.status);
   return res.send(httpResponse);
@@ -125,14 +131,20 @@ const destroy = async (req, res, next) => {
     messages: [],
   };
   const item = await getInstanceById(req.params.id, "Article");
-  if (item.success) {
-    httpResponse.success = true;
-    await item.instance.destroy();
-    httpResponse.messages.push("Article deleted successfully");
+  if (req.user.type == 'admin' || (item.instance.companyId == req.user.id)) {
+    if (item.success) {
+      httpResponse.success = true;
+      await item.instance.destroy();
+      httpResponse.messages.push("Article deleted successfully");
+    } else {
+      httpResponse.messages = [...item.messages];
+    }
+    res.status(item.status);
   } else {
-    httpResponse.messages = [...item.messages];
+    httpResponse.success = false
+    httpResponse.messages.push('You are not allowed to do so')
+    res.status(403);
   }
-  res.status(item.status);
   return res.send(httpResponse);
 };
 

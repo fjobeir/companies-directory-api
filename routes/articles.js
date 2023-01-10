@@ -8,7 +8,7 @@ const {
   show,
   update,
   destroy
-} = require("../controllers/ArticleController");
+} = require("../controllers/articleController");
 const {
   titleValidation,
   contentValidation,
