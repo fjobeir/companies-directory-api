@@ -19,7 +19,6 @@ router.post(
   isAuthenticated,
   (req, res, next) =>
     isAuthorized(req, res, next, {
-      admin: { matchId: false },
       company: { matchId: false },
     }),
   titleValidation,
@@ -27,17 +26,16 @@ router.post(
   store
 );
 
-router.get("/", isAuthenticated, index);
+router.get("/", index);
 
-router.get("/:id", isAuthenticated, show);
+router.get("/:id", show);
 
 router.put(
   "/:id",
   isAuthenticated,
   (req, res, next) =>
     isAuthorized(req, res, next, {
-      admin: { matchId: false },
-      company: { matchId: true },
+      company: { matchId: false },
     }),
   titleValidation,
   contentValidation,
@@ -50,7 +48,10 @@ router.delete(
   (req, res, next) =>
     isAuthorized(req, res, next, {
       admin: { matchId: false },
-      company: { matchId: true },
+      // company id does not have to match the resource id, BUT
+      // a relation of it (e.x: companyId of the article)
+      // done in controller
+      company: { matchId: false },
     }),
   destroy
 );
