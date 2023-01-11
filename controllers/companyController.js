@@ -6,6 +6,7 @@ const {
   companyTransformer,
   companiesTransformer,
 } = require("../transformers/company");
+const sequelize = require('sequelize')
 
 const store = async (req, res, next) => {
   const httpResponse = {
@@ -13,6 +14,7 @@ const store = async (req, res, next) => {
     data: null,
     messages: [],
   };
+  const {latitude = 0.0, longitude = 0.0} = req.body
   const province = await getInstanceById(req.body.provinceId, "Province");
   const city = await getInstanceById(req.body.cityId, "City");
   const category = await getInstanceById(req.body.categoryId, "Category");
@@ -47,6 +49,8 @@ const store = async (req, res, next) => {
       provinceId: req.body.provinceId,
       cityId: req.body.cityId,
       address: req.body.address,
+      longitude,
+      latitude
     },
   });
   if (created) {
@@ -95,7 +99,21 @@ const index = async (req, res, next) => {
     data: null,
     messages: [],
   };
-  const company = await models.Company.findAll();
+  const {lat = null, lng = null} = req.query
+  const attributes = ['id', 'name', 'logo', 'banner', 'address', 'email', 'views', 'longitude', 'latitude']
+    if (lng && lat) {
+        attributes.push(
+            [sequelize.literal("6371 * acos(cos(radians("+lat+")) * cos(radians(latitude)) * cos(radians("+lng+") - radians(longitude)) + sin(radians("+lat+")) * sin(radians(latitude)))"), 'distance']
+        )
+    }
+  const company = await models.Company.findAll({
+    include: [
+      models.User
+    ],
+    attributes,
+    order: (lat && lng) ? sequelize.col('distance') : ['name'],
+    limit: 12
+  });
   httpResponse.data = companiesTransformer(company);
   return res.send(httpResponse);
 };
@@ -169,7 +187,9 @@ const show = async (req, res, next) => {
   };
   const item = await getInstanceById(req.params.id, "Company");
   if (item.success) {
-    httpResponse.data = companyTransformer(item.instance);
+    httpResponse.data = companyTransformer(item.instance).dataValues;
+    httpResponse.data.Favorites = await item.instance.getUsers()
+    // httpResponse.data = {...companyTransformer(item.instance).dataValues, Favorites: await item.instance.getUsers()}
   }
   httpResponse.success = false;
   httpResponse.messages = [...item.messages];

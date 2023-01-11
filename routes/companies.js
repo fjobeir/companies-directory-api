@@ -35,7 +35,10 @@ const upload = multer({
 router.post(
   "/register",
   (req, res, next) => {
-    upload(req, res, (err) => checkUpload(err, next));
+    upload(req, res, (err) => {
+      console.log(req.files)
+      checkUpload(err, next)
+    });
   },
   logoValdation,
   bannerValdation,

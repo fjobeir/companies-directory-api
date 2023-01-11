@@ -12,11 +12,12 @@ const storage = multer.diskStorage({
 });
 
 const uploadFilter = (allowedTypes = "") => {
+  
   return (req, file, cb) => {
     let acceptedMemeTypes = [];
     switch (allowedTypes) {
       case "image":
-        acceptedMemeTypes = ["image/png", "image/jpg", "image/jepg"];
+        acceptedMemeTypes = ["image/png", "image/jpg", "image/jpeg", "image/svg+xml"];
         break;
       case "documnet":
         acceptedMemeTypes = ["application/msword", "application/pdf"];

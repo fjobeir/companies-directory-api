@@ -129,7 +129,12 @@ const show = async (req, res, next) => {
   res.status(item.status);
   return res.send(httpResponse);
 };
-
+const like = async (req, res) => {
+  const user = await models.User.findByPk(req.user.id)
+  const favAdded = await user.addCompany(req.body.companyId)
+  console.log(favAdded)
+  // return res.send()
+}
 module.exports = {
   store,
   login,
@@ -137,4 +142,5 @@ module.exports = {
   update,
   destroy,
   show,
+  like
 };

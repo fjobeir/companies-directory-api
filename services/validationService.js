@@ -155,7 +155,7 @@ const imageValdation = [
       return false;
     })
     .withMessage(function () {
-      return `The icon is invalid: ${uploadErrors?.toLocaleLowerCase() || "You sholud upload image up to 1MB"}`;
+      return `The icon is invalid: ${uploadErrors?.toLocaleLowerCase()}`;
     }),
   errorResponse,
 ];
@@ -169,7 +169,7 @@ const logoValdation = [
       return false;
     })
     .withMessage(function () {
-      return `The logo is invalid: ${uploadErrors?.toLocaleLowerCase() || "You sholud upload image up to 1MB"}`;
+      return `The logo is invalid: ${uploadErrors?.toLocaleLowerCase()}`;
     }),
   errorResponse,
 ];
@@ -182,7 +182,7 @@ const bannerValdation = [
       return false;
     })
     .withMessage(function () {
-      return `The banner image is invalid: ${uploadErrors?.toLocaleLowerCase() || "You sholud upload image up to 1MB"}`;
+      return `The banner image is invalid: ${uploadErrors?.toLocaleLowerCase()}`;
     }),
   errorResponse,
 ];

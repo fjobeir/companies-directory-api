@@ -1,4 +1,5 @@
 const { adsTransformer } = require("./adTransformer");
+const { usersTransformer } = require("./userTransformer");
 
 const companyTransformer = (company) => {
   if (company?.dataValues?.password) {
@@ -12,6 +13,15 @@ const companyTransformer = (company) => {
   }
   if (company?.Ads) {
     company.Ads = adsTransformer(company.Ads)
+  }
+  if (company.latitude) {
+    company.latitude = parseFloat(company.latitude)
+  }
+  if (company.longitude) {
+    company.longitude = parseFloat(company.longitude)
+  }
+  if (company.Users) {
+    company.Users = usersTransformer(company.Users)
   }
   return company;
 };

@@ -1,11 +1,13 @@
 var express = require("express");
 var router = express.Router();
-const { nameValidation, emailValidation,  passwordValidation, imageValdation, checkUpload} = require("../services/validationService");
+const { nameValidation, emailValidation,  passwordValidation, imageValdation, checkUpload, errorResponse} = require("../services/validationService");
 const multer = require("multer");
 const { storage, uploadFilter  } = require("../services/storageService");
 const isAuthorized = require("../middlewares/isAuthorized");
 const isAuthenticated = require("../middlewares/isAuthenticated");
-const { store, login, index, update, destroy, show} = require("../controllers/userController");
+const { store, login, index, update, destroy, show, like } = require("../controllers/userController");
+const { getInstanceById } = require("../services/modelService");
+const { body } = require("express-validator");
 
 const upload = multer({
   storage: storage,
@@ -60,5 +62,17 @@ router.get(
   (req, res, next) => isAuthorized(req, res, next, { user: { matchId: true } , admin:{matchId: false}}),
   show
 );
+
+router.post(
+  '/like',
+  isAuthenticated,
+  (req, res, next) => isAuthorized(req, res, next, { user: { matchId: false }}),
+  body('companyId', 'Please enter a valid company id').custom(async value => {
+    const companyExists = await getInstanceById(value, 'Company')
+    return companyExists.success
+  }),
+  errorResponse,
+  like
+)
 
 module.exports = router;

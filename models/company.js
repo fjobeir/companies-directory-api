@@ -27,6 +27,11 @@ module.exports = (sequelize, DataTypes) => {
       Company.hasMany(models.Ad, { 
         foreignKey: 'companyId'
       })
+      Company.belongsToMany(models.User, {
+        through: 'Favorites',
+        foreignKey: 'companyId',
+        as: 'favorites'
+      })
     }
   }
   Company.init(
