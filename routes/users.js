@@ -5,7 +5,7 @@ const multer = require("multer");
 const { storage, uploadFilter  } = require("../services/storageService");
 const isAuthorized = require("../middlewares/isAuthorized");
 const isAuthenticated = require("../middlewares/isAuthenticated");
-const { store, login, index, update, destroy, show, like } = require("../controllers/userController");
+const { store, login, index, update, destroy, show, like, view } = require("../controllers/userController");
 const { getInstanceById } = require("../services/modelService");
 const { body } = require("express-validator");
 
@@ -73,6 +73,18 @@ router.post(
   }),
   errorResponse,
   like
+)
+
+router.post(
+  '/view',
+  isAuthenticated,
+  (req, res, next) => isAuthorized(req, res, next, { user: { matchId: false }}),
+  body('companyId', 'Please enter a valid company id').custom(async value => {
+    const companyExists = await getInstanceById(value, 'Company')
+    return companyExists.success
+  }),
+  errorResponse,
+  view
 )
 
 module.exports = router;

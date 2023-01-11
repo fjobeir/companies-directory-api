@@ -17,8 +17,20 @@ module.exports = (sequelize, DataTypes) => {
       User.belongsToMany(models.Company, {
         through: 'Favorites',
         foreignKey: 'userId',
-        as: 'favorites'
+        as: 'Favorite'
       })
+      User.belongsToMany(models.Company, {
+        through: 'Views',
+        foreignKey: 'userId',
+        as: 'View'
+      })
+      User.hasMany(models.Contact, {
+        foreignKey: 'contactableId',
+        constraints: false,
+        scope: {
+          contactableType: 'user'
+        }
+      });
     }
   }
   User.init({

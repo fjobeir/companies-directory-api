@@ -33,7 +33,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'Favorite'
       })
       Company.belongsToMany(models.User, {
-
         through: {
           unique: false,
           model: 'Views'
@@ -41,6 +40,13 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'companyId',
         as: 'View'
       })
+      Company.hasMany(models.Contact, {
+        foreignKey: 'contactableId',
+        constraints: false,
+        scope: {
+          contactableType: 'company'
+        }
+      });
     }
   }
   Company.init(

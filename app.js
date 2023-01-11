@@ -13,6 +13,7 @@ var provincesRouter = require('./routes/provinces');
 var citiesRouter = require('./routes/cities');
 var categoriesRouter = require('./routes/categories');
 var adsRouter = require('./routes/ads');
+var contactsRouter = require('./routes/contacts');
 
 var app = express();
 
@@ -36,6 +37,7 @@ app.use('/provinces', provincesRouter);
 app.use('/cities', citiesRouter);
 app.use('/categories', categoriesRouter);
 app.use('/ads', adsRouter);
+app.use('/contacts', contactsRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

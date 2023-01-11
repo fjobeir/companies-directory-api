@@ -6,7 +6,8 @@ const {
   companyTransformer,
   companiesTransformer,
 } = require("../transformers/company");
-const sequelize = require('sequelize')
+const sequelize = require('sequelize');
+const { usersTransformer } = require("../transformers/user");
 
 const store = async (req, res, next) => {
   const httpResponse = {
@@ -108,7 +109,10 @@ const index = async (req, res, next) => {
     }
   const company = await models.Company.findAll({
     include: [
-      models.User
+      {
+        model: models.User,
+        as: 'Favorite'
+      }
     ],
     attributes,
     order: (lat && lng) ? sequelize.col('distance') : ['name'],
@@ -188,7 +192,8 @@ const show = async (req, res, next) => {
   const item = await getInstanceById(req.params.id, "Company");
   if (item.success) {
     httpResponse.data = companyTransformer(item.instance).dataValues;
-    httpResponse.data.Favorites = await item.instance.getUsers()
+    httpResponse.data.Favorites = usersTransformer(await item.instance.getFavorite())
+    httpResponse.data.contacts = await item.instance.getContacts()
     // httpResponse.data = {...companyTransformer(item.instance).dataValues, Favorites: await item.instance.getUsers()}
   }
   httpResponse.success = false;

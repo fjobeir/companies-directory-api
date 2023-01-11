@@ -2,7 +2,7 @@ const models = require("../models");
 const { getInstanceById } = require("../services/modelService");
 const { hashPassword, verifyPassword } = require("../services/passwordService");
 const { getToken, verifyToken } = require("../services/tokenService");
-const { userTransformer, usersTransformer } = require("../transformers/userTransformer");
+const { userTransformer, usersTransformer } = require("../transformers/user");
 
 const store = async (req, res, next) => {
   const httpResponse = {
@@ -131,7 +131,16 @@ const show = async (req, res, next) => {
 };
 const like = async (req, res) => {
   const user = await models.User.findByPk(req.user.id)
-  const favAdded = await user.addCompany(req.body.companyId)
+  const favAdded = await user.addFavorite(req.body.companyId)
+  console.log(favAdded)
+  return res.send({
+    success: true,
+    messages: ['Fav has been added']
+  })
+}
+const view = async (req, res) => {
+  const user = await models.User.findByPk(req.user.id)
+  const favAdded = await user.addView(req.body.companyId)
   console.log(favAdded)
   // return res.send()
 }
@@ -142,5 +151,6 @@ module.exports = {
   update,
   destroy,
   show,
-  like
+  like,
+  view
 };
