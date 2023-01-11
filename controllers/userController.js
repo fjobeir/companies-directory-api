@@ -2,7 +2,7 @@ const models = require("../models");
 const { getInstanceById } = require("../services/modelService");
 const { hashPassword, verifyPassword } = require("../services/passwordService");
 const { getToken, verifyToken } = require("../services/tokenService");
-const { userTransformer, usersTransformer } = require("../transformers/user");
+const { userTransformer, usersTransformer } = require("../transformers/userTransformer");
 
 const store = async (req, res, next) => {
   const httpResponse = {
@@ -22,6 +22,7 @@ const store = async (req, res, next) => {
     },
   });
   if (created) {
+    httpResponse.data = userTransformer(user)
     httpResponse.messages.push("User created successfully");
   } else {
     res.status(409);
