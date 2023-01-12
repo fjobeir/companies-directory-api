@@ -5,21 +5,11 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var adminsRouter = require('./routes/admins');
-var companiesRouter = require('./routes/companies');
-var provincesRouter = require('./routes/provinces');
-var citiesRouter = require('./routes/cities');
-var categoriesRouter = require('./routes/categories');
-var adsRouter = require('./routes/ads');
-var contactsRouter = require('./routes/contacts');
-
+var v1Routes = require('./lib/v1/routes');
 var app = express();
-
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'jade');
+// app.set('views', path.join(__dirname, 'views'));
+// app.set('view engine', 'jade');
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -29,15 +19,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/admins', adminsRouter);
-app.use('/companies', companiesRouter);
-app.use('/provinces', provincesRouter);
-app.use('/cities', citiesRouter);
-app.use('/categories', categoriesRouter);
-app.use('/ads', adsRouter);
-app.use('/contacts', contactsRouter);
+app.use('/api/v1', v1Routes)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
