@@ -1,0 +1,8 @@
+{
+    "errors": {
+        "name": "Name length must be between 2 and 20",
+        "email": "Email is invalid",
+        "password": "Password should contain a mix of capital and small letters, numbers and special characters with minimum length of 8",
+        "invalidCompanyId": "The company you are trying to add is invalid"
+    }
+}

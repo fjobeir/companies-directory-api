@@ -13,6 +13,8 @@
     "express": "~4.16.1",
     "express-validator": "^6.14.2",
     "http-errors": "~1.6.3",
+    "i18next": "^22.4.9",
+    "i18next-http-middleware": "^3.2.1",
     "jade": "~1.11.0",
     "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1",
