@@ -1,81 +1,32 @@
 {
 	"info": {
-		"_postman_id": "a30e6106-d496-421b-8d3f-d78a86167a50",
+		"_postman_id": "c1277d85-d688-4c4c-a94d-33116e9887f6",
 		"name": "API",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3880121"
 	},
 	"item": [
 		{
-			"name": "Users",
+			"name": "Admins",
 			"item": [
 				{
 					"name": "Register",
 					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Feras Jobeir\",\n    \"email\": \"fjobeir@test.com\",\n    \"password\": \"Ab!123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMjk4MzcyLCJleHAiOjE2NzMzODQ3NzJ9.jyWkPZ8Z-c37aL2AKEoxnPotuS-uraZTpaca0cYhboM",
+									"type": "string"
 								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/users/register",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"users",
-								"register"
 							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Login",
-					"request": {
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"fjobeir@gmail.com\",\n    \"password\": \"Ab!123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "{{api}}/users/login",
-							"host": [
-								"{{api}}"
-							],
-							"path": [
-								"users",
-								"login"
-							]
-						}
-					},
-					"response": []
-				}
-			]
-		},
-		{
-			"name": "Admin",
-			"item": [
-				{
-					"name": "Register",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Feras Jobeir\",\n    \"email\": \"fjobeir@test.com\",\n    \"password\": \"Ab!123456\"\n}",
+							"raw": "{\n    \"name\": \"feras\",\n    \"email\": \"feras@gmail.com\",\n    \"password\": \"Ab!123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -102,7 +53,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"fjobeir@gmail.com\",\n    \"password\": \"Ab!123456\"\n}",
+							"raw": "{\n    \"email\": \"feras@gmail.com\",\n    \"password\": \"Ab!123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -121,6 +72,698 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMjk4NDAxLCJleHAiOjE2NzMzODQ4MDF9.WDEA7XZZYDO-whUdTUr8B7H9eRIIbeDQptfK3oFD4Jc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/admins",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"admins"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMjk4NDAxLCJleHAiOjE2NzMzODQ4MDF9.WDEA7XZZYDO-whUdTUr8B7H9eRIIbeDQptfK3oFD4Jc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"fjobier\",\r\n    \"email\": \"feras@gmail.com\",\r\n    \"password\": \"Ab1234567!\",\r\n    \"phone\": 6346561\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/admins/6",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"admins",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMjk4NDAxLCJleHAiOjE2NzMzODQ4MDF9.WDEA7XZZYDO-whUdTUr8B7H9eRIIbeDQptfK3oFD4Jc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/admins/6",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"admins",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMjk4NDAxLCJleHAiOjE2NzMzODQ4MDF9.WDEA7XZZYDO-whUdTUr8B7H9eRIIbeDQptfK3oFD4Jc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/admins/6",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"admins",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Ads",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{companyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/Users/ferasjobeir/Downloads/iconmonstr.com/iconmonstr-school-22-240.png"
+								},
+								{
+									"key": "startDate",
+									"value": "2023-01-01",
+									"type": "text"
+								},
+								{
+									"key": "endDate",
+									"value": "2023-01-21",
+									"type": "text"
+								},
+								{
+									"key": "target",
+									"value": "https://www.fjobeir.com",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/ads",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"ads"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Ads",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Article",
+			"item": [
+				{
+					"name": "Store",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyId\": 1,\n    \"categoryId\": 1,\n    \"title\": \"test article\",\n    \"content\": \"content test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/articles",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyId\": 1,\n    \"categoryId\": 1,\n    \"title\": \"first article\",\n    \"content\": \"content test\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/articles/4",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"articles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/cities",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/articles/4",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"articles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/articles/4",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"articles",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Category",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA5NjY4LCJleHAiOjE2NzMzOTYwNjh9.SToKAUBNPsxlDo0dAyTbCRmqGtY9du_gXsUp7rdGH0A",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "tech",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "tech comapny",
+									"type": "text"
+								},
+								{
+									"key": "icon",
+									"type": "file",
+									"src": "/C:/Users/ubaei/Downloads/iconmonstr-education-1-240.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/categories",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "test2",
+									"type": "text"
+								},
+								{
+									"key": "description",
+									"value": "test2",
+									"type": "text"
+								},
+								{
+									"key": "icon",
+									"type": "file",
+									"src": "/C:/Users/ubaei/Downloads/iconmonstr-education-1-240.png"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/articles4",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"articles4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidHlwZSI6InVzZXIiLCJpYXQiOjE2NzMwOTM1NDEsImV4cCI6MTY3MzE3OTk0MX0.RFLRsGo0WKOz0i9XVPMZdH7djCMHuA6CbftmC9pz5Zo",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/articles",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"articles"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/categories/40",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"categories",
+								"40"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/categories/42",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"categories",
+								"42"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Taksim\",\n    \"provinceId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/cities",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Adı yaman\",\n    \"provinceId\": 1\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/cities/3",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"cities",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/cities",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"cities"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/cities/1",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"cities",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/cities/3",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"cities",
+								"3"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -133,13 +776,54 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"name\": \"Feras Jobeir\",\n    \"email\": \"fjobeir@test.com\",\n    \"password\": \"Ab!123456\"\n}",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Instagram",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "Instagram@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Ab!123456",
+									"type": "text"
+								},
+								{
+									"key": "logo",
+									"type": "file",
+									"src": "/C:/Users/ubaei/Downloads/iconmonstr-education-1-240.png"
+								},
+								{
+									"key": "banner",
+									"type": "file",
+									"src": "/C:/Users/ubaei/Downloads/iconmonstr-education-1-240.png"
+								},
+								{
+									"key": "categoryId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "provinceId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "cityId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "address",
+									"value": "USA",
+									"type": "text"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "{{api}}/companies/register",
@@ -161,7 +845,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"email\": \"fjobeir@gmail.com\",\n    \"password\": \"Ab!123456\"\n}",
+							"raw": "{\n    \"email\": \"Instagram@gmail.com\",\n    \"password\": \"Ab!123456\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -180,6 +864,318 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzAzMzY1LCJleHAiOjE2NzMzODk3NjV9.UzZAzgvyZ34SdGo8mbQN__365rfRNBM6wo4XJtbENqM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/companies",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"companies"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"ubaeida\",\r\n    \"email\": \"ubaeida@test.com\",\r\n    \"password\": \"Ab!123456\",\r\n    \"categoryId\": 1,\r\n    \"provinceId\": 1,\r\n    \"cityId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/companies/2",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"companies",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/companies/1",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"companies",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzAzMzY1LCJleHAiOjE2NzMzODk3NjV9.UzZAzgvyZ34SdGo8mbQN__365rfRNBM6wo4XJtbENqM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/companies/4",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"companies",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "My profile",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{companyToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/companies/me",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"companies",
+								"me"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Language",
+			"item": [
+				{
+					"name": "Store",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Spanish\",\n    \"code\": \"ES\",\n    \"direction\": \"LTR\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/languages",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"languages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Spanish\",\n    \"code\": \"ES\",\n    \"direction\": \"LTR\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/languages/1",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"languages",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/languages",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"languages"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/languages/2",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"languages",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/languages/1",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"languages",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"auth": {
+				"type": "bearer"
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
 				}
 			]
 		},
@@ -189,11 +1185,21 @@
 				{
 					"name": "Store",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Adana\"\n}",
+							"raw": "{\n    \"name\": \"Izmir\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -215,11 +1221,21 @@
 				{
 					"name": "Update",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"name\": \"Adı yaman\"\n}",
+							"raw": "{\n    \"name\": \"Istanbul\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -242,6 +1258,16 @@
 				{
 					"name": "Index",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -259,6 +1285,16 @@
 				{
 					"name": "Show",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -277,15 +1313,367 @@
 				{
 					"name": "Destroy",
 					"request": {
-						"method": "GET",
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NywidHlwZSI6ImFkbWluIiwiaWF0IjoxNjczMzA0MTMwLCJleHAiOjE2NzMzOTA1MzB9.UqZdO_iTvOATFqrVL7Pr5EQZ41nu0FrhGTUHNkdqE3g",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "{{api}}/provinces",
+							"raw": "{{api}}/provinces/3",
 							"host": [
 								"{{api}}"
 							],
 							"path": [
-								"provinces"
+								"provinces",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "user",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "user@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Ab!123456",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/ubaei/Downloads/iconmonstr-education-1-240.png"
+								},
+								{
+									"key": "bio",
+									"value": "I am ali",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/users/register",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"fjobeir@gmail.com\",\n    \"password\": \"Ab!123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/users/login",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "index",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInR5cGUiOiJ1c2VyIiwiaWF0IjoxNjczMjk3NTYyLCJleHAiOjE2NzMzODM5NjJ9.gnmHSPCcDhnvxxaztVBsXcIIsN6q-yw-L4AcLcLAg-c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/users",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInR5cGUiOiJ1c2VyIiwiaWF0IjoxNjczMjk3NTYyLCJleHAiOjE2NzMzODM5NjJ9.gnmHSPCcDhnvxxaztVBsXcIIsN6q-yw-L4AcLcLAg-c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "ali",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "ali@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "Ab!123456",
+									"type": "text"
+								},
+								{
+									"key": "avatar",
+									"type": "file",
+									"src": "/C:/Users/ubaei/Downloads/iconmonstr-education-1-240.png"
+								},
+								{
+									"key": "bio",
+									"value": "i am ali",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{api}}/users/10",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Destroy",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTAsInR5cGUiOiJ1c2VyIiwiaWF0IjoxNjczMjk3NTYyLCJleHAiOjE2NzMzODM5NjJ9.gnmHSPCcDhnvxxaztVBsXcIIsN6q-yw-L4AcLcLAg-c",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/users/10",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"10"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwidHlwZSI6InVzZXIiLCJpYXQiOjE2NzMzMDI5MDQsImV4cCI6MTY3MzM4OTMwNH0.HSvVOQV4HsNDEvuFn3jW7-TI92tmCdHM1D7et6DzGH4",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{api}}/users/5",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Like",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyId\": 5\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/users/like",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"companyId\": 4\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/users/like",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"users",
+								"like"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Contact",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{userToken}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"type\": \"phone\",\n    \"value\": \"00905384111111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{api}}/contacts",
+							"host": [
+								"{{api}}"
+							],
+							"path": [
+								"contacts"
 							]
 						}
 					},
